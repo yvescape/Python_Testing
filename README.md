@@ -1,5 +1,18 @@
-# gudlift-registration
+# registration
+```
+Hey,
 
+Je viens de recevoir le rapport de QA pour la phase 1 du projet. Il y a plusieurs bogues, dont un qui fait planter l'application ! Malheureusement, je ne suis pas au bureau pour les prochains jours (un de mes enfants est tombé malade ce week-end). Je ne sais pas encore quand je pourrai être là dans la semaine. Pourriez-vous prendre en charge la mise en œuvre du projet ? Vous devrez régler les bogues de la phase 1 et mettre en œuvre les éléments de la phase 2 (j'ai ajouté le travail de la phase 2 et les bogues de la section “issues” du repo). 
+
+Vous devrez cloner et forker le repo et le mettre en place sur votre machine locale (tout ce dont vous avez besoin se trouve dans le fichier README). Ensuite, passez en revue les bogues dans la section des problèmes, puis essayez de reproduire les problèmes sur votre machine locale pour résoudre les bogues et ajouter la gestion des erreurs. Pour gagner du temps de configuration, nous utilisons Flask et JSON pour éviter d'utiliser une base de données. La plupart des outils dont vous aurez besoin se trouvent dans le fichier requirements.txt dans le repo, mais vous devrez installer Flask et notre framework de test préféré, pytest, ainsi que notre outil de test de performance, Locust. 
+
+Vous devrez également préparer un rapport de test et un rapport de performances, conformément au guide de développement à la fin des spécifications fonctionnelles ci-jointes. Veillez à suivre toutes les directives, car le QA nous reproche de ne pas respecter les normes. Vous devez tester de manière approfondie les résultats requis (à la fois les happy paths et les sad paths) pour toutes les fonctionnalités de l'application.  Je vous encourage également à adopter une approche de TDD, car cela vous aidera à rationaliser votre travail. 
+
+Une fois que vous aurez terminé, nous ferons un examen de ce que vous avez dans la branche QA du code. Nous examinerons les rapports et la manière dont vous avez résolu les problèmes, nous examinerons votre code et nous testerons la couverture de la nouvelle fonctionnalité. 
+
+Merci !
+Sam
+```
 1. Why
 
 
