@@ -26,8 +26,12 @@ def index():
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html',club=club,competitions=competitions)
+    matching_clubs = [club for club in clubs if club['email'] == request.form['email']]
+    if not matching_clubs:
+        flash("L'e-mail fourni n'existe pas dans notre système.", 'error')
+        return redirect(url_for('index'))  # Redirigez vers la page où l'erreur doit être affichée
+    club = matching_clubs[0]
+    return render_template('welcome.html',club=club)
 
 
 @app.route('/book/<competition>/<club>')
