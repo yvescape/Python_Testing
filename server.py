@@ -1,5 +1,6 @@
 import json
 from flask import Flask,render_template,request,redirect,flash,url_for
+from datetime import datetime
 
 
 def loadClubs():
@@ -19,6 +20,7 @@ app.secret_key = 'something_special'
 
 competitions = loadCompetitions()
 clubs = loadClubs()
+today = datetime.now()
 
 @app.route('/')
 def index():
@@ -26,12 +28,13 @@ def index():
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
+    comp = [competition for competition in competitions if datetime.strptime(competition['date'], "%Y-%m-%d %H:%M:%S") >= today]
     matching_clubs = [club for club in clubs if club['email'] == request.form['email']]
     if not matching_clubs:
         flash("L'e-mail fourni n'existe pas dans notre système.", 'error')
         return redirect(url_for('index'))  # Redirigez vers la page où l'erreur doit être affichée
     club = matching_clubs[0]
-    return render_template('welcome.html',club=club,competitions=competitions)
+    return render_template('welcome.html',club=club,competitions=comp)
 
 
 @app.route('/book/<competition>/<club>')
