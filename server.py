@@ -58,7 +58,9 @@ def purchasePlaces():
         club['points'] = int(club['points']) - placesRequired
         flash('Great-booking complete!')
         return render_template('welcome.html', club=club, competitions=competitions)  # Redirigez vers la page où l'erreur doit être affichée
-
+    if placesRequired >= int(competition['numberOfPlaces']):
+        flash("le nombre fourni est superieur au nombre de place.", 'error')
+        return redirect(url_for('book',club=club['name'],competition=competition['name']))  # Redirigez vers la page où l'erreur doit être affichée
 # TODO: Add route for points display
 
 
