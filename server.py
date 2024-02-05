@@ -31,7 +31,7 @@ def showSummary():
         flash("L'e-mail fourni n'existe pas dans notre système.", 'error')
         return redirect(url_for('index'))  # Redirigez vers la page où l'erreur doit être affichée
     club = matching_clubs[0]
-    return render_template('welcome.html',club=club)
+    return render_template('welcome.html',club=club,competitions=competitions)
 
 
 @app.route('/book/<competition>/<club>')
