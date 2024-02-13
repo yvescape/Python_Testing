@@ -1,6 +1,7 @@
 import json
 from flask import Flask,render_template,request,redirect,flash,url_for
 from datetime import datetime
+from ajouter_ticket import *
 
 
 def loadClubs():
@@ -57,18 +58,26 @@ def purchasePlaces():
         flash("le nombre fourni n'est pas valide.", 'error')
         return redirect(url_for('book',club=club['name'],competition=competition['name']))  # Redirigez vers la page où l'erreur doit être affichée
     if placesRequired <= int(club['points']) and placesRequired <= 12:
-        competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
-        club['points'] = int(club['points']) - placesRequired
-        flash('Great-booking complete!')
-        return render_template('welcome.html', club=club, competitions=competitions)  # Redirigez vers la page où l'erreur doit être affichée
+        # Tente d'ajouter les tickets
+        if ajouter_ticket(club['name'], competition['name'], placesRequired):
+            # Si l'ajout est réussi, mettez à jour les autres informations et redirigez
+            competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
+            club['points'] = int(club['points']) - placesRequired
+            flash('Great-booking complete!', "success")
+            return redirect(url_for('book', club=club['name'], competition=competition['name']))
+        else:
+            # Si l'ajout a échoué (limite dépassée), affichez un message approprié
+            flash("Impossible d'ajouter les tickets, limite dépassée.", "error")
+            return redirect(url_for('book', club=club['name'], competition=competition['name']))
+
     if placesRequired >= int(competition['numberOfPlaces']):
         flash("le nombre fourni est superieur au nombre de place.", 'error')
         return redirect(url_for('book',club=club['name'],competition=competition['name']))  # Redirigez vers la page où l'erreur doit être affichée
     if placesRequired > int(club['points']):
         flash("le nombre fourni est superieur au nombre de points du club.", 'error')
         return redirect(url_for('book',club=club['name'],competition=competition['name']))  # Redirigez vers la page où l'erreur doit être affichée
-# TODO: Add route for points display
 
+# TODO: Add route for points display
 
 @app.route('/logout')
 def logout():

@@ -1,0 +1,12 @@
+[
+    {
+        "nom": "Iron Temple",
+        "competition": "Spring Festival",
+        "nb_ticket": 11
+    },
+    {
+        "nom": "Iron Temple",
+        "competition": "Fall Classic",
+        "nb_ticket": 5
+    }
+]
