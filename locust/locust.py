@@ -18,3 +18,7 @@ class UserBehavior(HttpUser):
     @task
     def purchase_places(self):
         self.client.post("/purchasePlaces", data={'competition': 'Spring Festival', 'club': 'Simply Lift', 'places': '5'})
+
+    @task
+    def some_other_route(self):
+        self.client.get("/some_other_route/john@simplylift.co")
