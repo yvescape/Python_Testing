@@ -73,3 +73,15 @@ def purchasePlaces():
 @app.route('/logout')
 def logout():
     return redirect(url_for('index'))
+
+
+@app.route('/some_other_route/<club_email>')
+def some_other_route(club_email):
+    comp = [competition for competition in competitions if datetime.strptime(competition['date'], "%Y-%m-%d %H:%M:%S") >= today]
+    matching_clubs = [club for club in clubs if club['email'] == club_email]
+    if not matching_clubs:
+        flash("L'e-mail fourni n'existe pas dans notre système.", 'error')
+        return redirect(url_for('index'))  # Redirigez vers la page où l'erreur doit être affichée
+    club = matching_clubs[0]
+    # Vous pouvez effectuer des opérations supplémentaires ici si nécessaire
+    return render_template('welcome.html', club=club, competitions=comp)
