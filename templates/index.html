@@ -10,8 +10,11 @@
 </head>
 <body>
     <center>
-        <h1>Welcome to the GUDLFT Registration Portal!</h1>
-        Please enter your secretary email to continue:
+        <div class="titre">
+            <h1>Welcome to the GUDLFT Registration Portal!</h1>
+        </div>
+        <br>
+        <h4>Please enter your secretary email to continue:</h4>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -22,36 +25,47 @@
             {% endif %}
         {% endwith %}
         <form action="showSummary" method="post">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id=""/>
+            <label for="email" style="font-size: large;">Email:</label>
+            <input type="email" name="email" id="" required/>
             <button type="submit" class="valid">Enter</button>
         </form>
 
+        <br>
+
         <button  type="button" onclick="afficherSection('section1')" id="btnsection1" class="active">CLUBS</button>
         <button  type="button" onclick="afficherSection('section2')" id="btnsection2">COMPETITIONS</button>
-
-        <div id="section1" class="section">
-            <h2>Liste des Equipes</h2>
-            {% for club in clubs %}
-                <li>
-                    Nombre {{ club['name'] }}<br />
-                    Points: {{ club['points'] }}</br>
-                </li>
-                <hr width="350px"/>
-            {% endfor %}
+        
+        <br>
+        <br>
+        
+        <div class="fr_in">
+            <div id="section1" class="section">
+                <h2><u>Liste des Equipes</u></h2>
+                <br>
+                {% for club in clubs %}
+                    <li>
+                        <h5>{{ club['name'] }}</h5>
+                        Points: {{ club['points'] }}</br>
+                    </li>
+                    <hr width="350px"/>
+                {% endfor %}
+            </div>
+    
+            <div id="section2" class="section">
+                <h2><u>Liste des Competitions</u></h2>
+                <br>
+                {% for comp in competitions %}
+                    <li>
+                        <h5>{{ comp['name'] }}</h5>
+                        Date: {{ comp['date'] }}<br />
+                        Number of Places: {{ comp['numberOfPlaces'] }}
+                    </li>
+                    <hr width="350px"/>
+                {% endfor %}
+            </div>
         </div>
 
-        <div id="section2" class="section">
-            <h2>Liste des Competitions</h2>
-            {% for comp in competitions %}
-                <li>
-                    {{ comp['name'] }}<br />
-                    Date: {{ comp['date'] }}<br />
-                    Number of Places: {{ comp['numberOfPlaces'] }}
-                </li>
-                <hr width="350px"/>
-            {% endfor %}
-        </div>
+        
     </center>
 </body>
 </html>

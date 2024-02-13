@@ -1,5 +1,5 @@
 *{
-    margin: 10px;
+    margin: 0px;
 }
 /* Style pour afficher la première section par défaut */
 #section1 {
@@ -19,12 +19,13 @@ button {
     border-radius:6px;
     height: 26px;
     border: 1px solid #000000; 
+    background-color: rgba(255, 127, 80, 0.1);
 }
 
 /* Style pour les boutons actifs */
 .active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: rgb(255, 127, 80);
+    color: rgb(0, 0, 0);
 } 
 
 /* style pour le bouton valide*/
@@ -34,6 +35,12 @@ button {
     cursor: pointer;
     border-radius: 6px;
     border: 1px solid #000000; 
+    background-color: rgba(255, 127, 80, 0.1);
+}
+
+.valid:hover{
+    background-color: rgb(255, 127, 80);
+    transition: 0.7s;
 }
 
 .alert {
@@ -41,4 +48,22 @@ button {
     height: auto; /* Laissez la hauteur auto pour ajuster en fonction du contenu */
     margin: 10px auto; /* Ajustez la marge pour centrer la section horizontalement */
     /* Ajoutez d'autres styles selon vos besoins */
+}
+
+.titre{
+    background-color: rgb(255, 127, 80);
+    width: 100%;
+}
+
+.fr_in{
+    background-color: rgb(255, 127, 80);
+    width: 33%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #000000;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8); /* Ombre */
+}
+
+li {
+    list-style-type: none; /* Supprime le point des éléments de liste */
 }
